@@ -17,7 +17,7 @@ module.exports = {
   mode: "development",
   output: {
     path: path.resolve(__dirname + "/browser/build"),
-    library: "TensorFlowJS Tutorial ",
+    library: "TensorFlowJSTutorial",
     filename: "index.js",
     libraryTarget: "umd",
     umdNamedDefine: true
