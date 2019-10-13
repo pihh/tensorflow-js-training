@@ -213,25 +213,28 @@ export default class LinearRegression {
 
   async run() {
     [
-      "LINEAR REGRESSION",
-      "* Load the JSON data",
-      "* Get the necessary values [x => horsePower, y => mpg]",
-      "* Render the 2d graph HorsePower vs MPG",
-      "* Create Model",
-      "    * Define Layers",
-      "* Convert to tensor",
-      "    * Shuffle data",
-      "    * Convert data to tensor",
-      "    * Normalize the data ( making it fit between 0 and 1)",
-      "* Train the model",
-      "    * Choose optimizer - Adam - simple and no config",
-      "    * Choose loss function - Mean Squared Error in this case",
-      "    * Choose batchSize: refers to the size of the data subsets that the model will see on each iteration of training.",
-      "    * Choose epochs: Number of times this will loop through the model.",
-      "* Test the model",
-      "",
-      ""
-    ].forEach(l => console.log(`%c ${l}`, "color: green"));
+      `LINEAR REGRESSION:
+      * Load the JSON data.
+      * Get the necessary values [x => horsePower, y => mpg].
+      * Render the 2d graph HorsePower vs MPG.
+      * Create Model:
+           * Define Layers
+      * Convert to tensor:
+           * Shuffle data
+           * Convert data to tensor
+           * Normalize the data ( making it fit between 0 and 1)
+      * Train the model:
+           * Choose optimizer - Adam - simple and no config
+           * Choose loss function - Mean Squared Error in this case
+           * Choose batchSize: refers to the size of the data subsets that the model will see on each iteration of training.
+           * Choose epochs: Number of times this will loop through the model.
+      * Test the model.
+           * Generate predictions for a uniform range of numbers between 0 and 1;
+           * Un-normalize the data by doing the inverse of the min-max scaling that we did earlier.
+      `
+    ].forEach(l =>
+      console.log(`%c ${l}`, "background: black ; color: rgb( 0, 255, 0 )")
+    );
     // Load and plot the original input data that we are going to train on.
     const data = await this.loadData();
     const values = data.map(d => ({
