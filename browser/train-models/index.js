@@ -233,6 +233,8 @@ export default class LinearRegression {
       * Test the model.
            * Generate predictions for a uniform range of numbers between 0 and 1;
            * Un-normalize the data by doing the inverse of the min-max scaling that we did earlier.
+      * Improve the Model:
+          * Added activation: sigmoid to output and 50 units to hidden layer, it now almost fits perfectly
       `
     ].forEach(l =>
       console.log(`%c ${l}`, "background: black ; color: rgb( 0, 255, 0 )")
