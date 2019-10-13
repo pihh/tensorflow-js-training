@@ -56,11 +56,13 @@ export default class LinearRegression {
 
     // Add a single hidden layer
     this.model.add(
-      tf.layers.dense({ inputShape: [1], units: 1, useBias: true })
+      tf.layers.dense({ inputShape: [1], units: 50, useBias: true })
     );
 
     // Add an output layer
-    this.model.add(tf.layers.dense({ units: 1, useBias: true }));
+    this.model.add(
+      tf.layers.dense({ units: 1, useBias: true, activation: "sigmoid" })
+    );
 
     return this.model;
   }
@@ -269,7 +271,6 @@ export default class LinearRegression {
     // Choose batchSize: refers to the size of the data subsets that the model will see on each iteration of training.
     // Choose epochs: Number of times this will loop through the model.
     await this.trainModel();
-    console.log("Done Training");
 
     // Test Model
     // Check how the predictions match with the model
