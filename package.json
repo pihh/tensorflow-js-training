@@ -18,11 +18,12 @@
   },
   "homepage": "https://github.com/pihh/tensorflow-js-training#readme",
   "dependencies": {
-    "@tensorflow/tfjs": "^1.2.11",
-    "@tensorflow/tfjs-node": "^1.2.11",
     "@babel/runtime-corejs2": "^7.6.2",
     "@tensorflow-models/coco-ssd": "^2.0.0",
-    "@tensorflow/tfjs-vis": "^1.2.0"
+    "@tensorflow/tfjs": "^1.2.11",
+    "@tensorflow/tfjs-node": "^1.2.11",
+    "@tensorflow/tfjs-vis": "^1.2.0",
+    "localforage": "^1.7.3"
   },
   "devDependencies": {
     "@babel/core": "^7.6.3",

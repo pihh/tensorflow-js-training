@@ -39,9 +39,7 @@
     />
     <meta name="msapplication-TileColor" content="#ffffff" />
     <meta name="theme-color" content="#ffffff" />
-    <script src="https://cdn.jsdelivr.net/gh/pihh/cognus-project-tester-web-components/index.js"></script>
   </head>
-
   <body>
     <div id="container">
       <div class="container mx-auto px-4 py-8">
@@ -92,11 +90,24 @@ Linear Regression is made with an assumption that there’s a linear relationshi
                 ></cognus-li>
               </ul>
             </div>
-            <div class="md:w-2/3 sm:flex flex-wrap"></div>
+            <div class="md:w-2/3 sm:flex flex-wrap">
+              <!-- <cognus-repeat
+                element="ul"
+                content='[{"title": "Game of Thrones"}, {"title":"XXX - Midget Porn"}]'
+              >
+                <cognus-li text="${title}"></cognus-li></li>
+              </cognus-repeat> -->
+            </div>
           </div>
         </div>
       </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/gh/pihh/cognus-project-tester-web-components@1.0.1/index.js"></script>
     <script src="../../index.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        new TensorFlowJSTutorial.TrainModels.LinearRegression().run();
+      });
+    </script>
   </body>
 </html>
