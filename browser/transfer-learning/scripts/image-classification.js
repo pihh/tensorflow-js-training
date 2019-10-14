@@ -137,7 +137,7 @@ export default class ImageClassification {
     this.ys = tf.oneHot(labelsTensor, LABELS.length);
   }
 
-  setModel() {
+  async setModel() {
     // layers vão do inicio para o fim
     this.model = tf.sequential();
     let hidden = tf.layers.dense({
@@ -164,8 +164,14 @@ export default class ImageClassification {
       optimizer,
       loss
     });
-    console.log(this.xs, this.ys);
-    this.model.fit(this.xs, this.ys);
+
+    const result = await this.model.fit(this.xs, this.ys, {
+      epochs: 10,
+      validationData: 0.1,
+      shuffle: true
+    });
+
+    return result;
   }
 
   async setup() {
@@ -219,6 +225,8 @@ export default class ImageClassification {
   async run() {
     await this.setup();
     this.dataSetToTensors();
-    this.setModel();
+    const results = await this.setModel();
+
+    console.log({ results });
   }
 }
