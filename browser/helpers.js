@@ -137,7 +137,33 @@ export const cropImage = async function(
   console.log(result);
   return result;
 };
+//
+// cropImage(
+//   "https://cdn.vox-cdn.com/thumbor/9KWZcsQc2pnKa73CVfdG8lp-bu8=/0x0:2040x1360/1200x675/filters:focal(1228x281:1554x607)/cdn.vox-cdn.com/uploads/chorus_image/image/63920405/IMG_B990CF208719_1.0.jpeg"
+// );
 
-cropImage(
-  "https://cdn.vox-cdn.com/thumbor/9KWZcsQc2pnKa73CVfdG8lp-bu8=/0x0:2040x1360/1200x675/filters:focal(1228x281:1554x607)/cdn.vox-cdn.com/uploads/chorus_image/image/63920405/IMG_B990CF208719_1.0.jpeg"
-);
+export const stringToArrayBuffer = function(str) {
+  var array = new Uint8Array(str.length);
+  for (var i = 0; i < str.length; i++) {
+    array[i] = str.charCodeAt(i);
+  }
+  return array.buffer;
+};
+const getLabels = async function() {
+  const labelsResponse = await fetch(
+    "https://storage.googleapis.com/learnjs-data/model-builder/mnist_labels_uint8"
+  );
+
+  const labelsResponseArrayBuffer = await labelsResponse.arrayBuffer();
+  const datasetLabels = new Uint8Array(labelsResponseArrayBuffer);
+  var string = datasetLabels.toString();
+
+  console.log({
+    datasetLabels,
+    string,
+    labelsResponse,
+    labelsResponseArrayBuffer
+  });
+
+  return { datasetLabels, string, labelsResponse, labelsResponseArrayBuffer };
+};

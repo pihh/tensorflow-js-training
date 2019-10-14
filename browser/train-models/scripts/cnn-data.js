@@ -44,6 +44,8 @@ export class CnnData {
   }
 
   async load() {
+    console.clear();
+    console.log("Running Load from MNIST");
     // Make a request for the MNIST sprited image.
     const img = new Image();
     const canvas = document.createElement("canvas");
@@ -58,9 +60,21 @@ export class CnnData {
           NUM_DATASET_ELEMENTS * IMAGE_SIZE * 4
         );
 
+        console.log("Mapping datasetBytesBuffer");
+
         const chunkSize = 5000;
+        const loopSize = NUM_DATASET_ELEMENTS / chunkSize;
         canvas.width = img.width;
         canvas.height = chunkSize;
+
+        console.log({
+          note: "imageSize = 28* 28",
+          datasetBytesBuffer,
+          NUM_DATASET_ELEMENTS,
+          IMAGE_SIZE,
+          loopSize,
+          width: canvas.width
+        });
 
         for (let i = 0; i < NUM_DATASET_ELEMENTS / chunkSize; i++) {
           const datasetBytesView = new Float32Array(
@@ -68,6 +82,8 @@ export class CnnData {
             i * IMAGE_SIZE * chunkSize * 4,
             IMAGE_SIZE * chunkSize
           );
+
+          console.log({ datasetBytesView });
           ctx.drawImage(
             img,
             0,
@@ -81,7 +97,22 @@ export class CnnData {
           );
 
           const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-
+          console.log({
+            ctxDrawImageInfo: {
+              img,
+              "1": 0,
+              "2": i * chunkSize,
+              imgWidth: img.width,
+              chunkSize,
+              "5": 0,
+              "6": 0,
+              imgWidthAgain: img.width,
+              chunkSizeAgain: chunkSize
+            },
+            imageData,
+            length: imageData.data.length,
+            trackedLength: imageData.data.length / 4
+          });
           for (let j = 0; j < imageData.data.length / 4; j++) {
             // All channels hold an equal value since the image is grayscale, so
             // just read the red channel.
@@ -89,7 +120,7 @@ export class CnnData {
           }
         }
         this.datasetImages = new Float32Array(datasetBytesBuffer);
-
+        console.log({ dataSetImages: this.dataSetImages });
         resolve();
       };
       img.src = MNIST_IMAGES_SPRITE_PATH;
