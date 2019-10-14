@@ -1,0 +1,26 @@
+<html>
+  <head> </head>
+  <body>
+    <div id="console"></div>
+    <!-- Add an image that we will use to test -->
+
+    <div
+      id="canvas-color"
+      style="display: inline-block ; margin-right: 10px"
+    ></div>
+
+    <div>
+      <button id="red">Red-ish</button>
+      <button id="blue">Blue-ish</button>
+      <button id="green">Green-ish</button>
+      <button id="next">Next</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/gh/pihh/cognus-project-tester-web-components@1.0.1/index.js"></script>
+    <script src="../../index.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        new TensorFlowJSTutorial.TransferLearning.ColorClassification().run();
+      });
+    </script>
+  </body>
+</html>

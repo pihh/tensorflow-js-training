@@ -3,7 +3,7 @@ import {
   ConvoltionalNeuralNetwork,
   CNN
 } from "./train-models";
-import { ImageClassification } from "./transfer-learning";
+import { ImageClassification, ColorClassification } from "./transfer-learning";
 [
   "LESSONS",
   `The steps in training a machine learning model include:
@@ -35,7 +35,7 @@ export const TrainModels = {
   ConvoltionalNeuralNetwork,
   CNN
 };
-
 export const TransferLearning = {
+  ColorClassification,
   ImageClassification
 };
