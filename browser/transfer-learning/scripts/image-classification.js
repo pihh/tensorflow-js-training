@@ -81,6 +81,17 @@ export default class ImageClassification {
   next() {
     this.rgb();
     this.backgroundColor();
+
+    try {
+      const xs = tf.tensor2d([[this.r / 255, this.g / 255, this.b / 255]]);
+      const results = this.model.predict(xs);
+      const index = results.argMax(1).dataSync(); // Vai buscar o indice do maior
+      console.clear();
+      console.log("Predict", { color: LABELS[index], results });
+      results.print();
+    } catch (ex) {
+      console.warn(ex);
+    }
   }
 
   paintCanvas(color) {
@@ -166,9 +177,19 @@ export default class ImageClassification {
     });
 
     const result = await this.model.fit(this.xs, this.ys, {
-      epochs: 10,
+      epochs: 50,
       validationData: 0.1,
-      shuffle: true
+      shuffle: true,
+      callbacks: {
+        onTrainBegin: () => console.log("Training Start"),
+        onTrainEnd: () => console.log("Training End"),
+        onBatchEnd: tf.nextFrame,
+        onEpochEnd: async (num, logs) => {
+          console.log("Epoch: " + num);
+          console.log("Loss: " + logs.loss);
+          return true;
+        }
+      }
     });
 
     return result;
