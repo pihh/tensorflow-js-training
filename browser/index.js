@@ -1,5 +1,9 @@
-import LinearRegression from "./train-models";
-
+import {
+  LinearRegression,
+  ConvoltionalNeuralNetwork,
+  CNN
+} from "./train-models";
+import { ImageClassification } from "./transfer-learning";
 [
   "LESSONS",
   `The steps in training a machine learning model include:
@@ -27,5 +31,11 @@ import LinearRegression from "./train-models";
 * Choose an evaluation metric for your model that you can monitor while training. Once it's trained, try making some test predictions to get a sense of prediction quality.`
 ].forEach(l => console.log(l));
 export const TrainModels = {
-  LinearRegression
+  LinearRegression,
+  ConvoltionalNeuralNetwork,
+  CNN
+};
+
+export const TransferLearning = {
+  ImageClassification
 };
