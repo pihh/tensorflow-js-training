@@ -1,4 +1,5 @@
 import * as tf from "@tensorflow/tfjs";
+import * as smartcrop from "smartcrop";
 
 function randomString(length = 5) {
   return Math.random()
@@ -112,3 +113,31 @@ export class Canvas {
     return { x: canvasX, y: canvasY };
   }
 }
+export const loadImage = async function(src) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.crossOrigin = "";
+    img.src = src;
+    img.onload = () => resolve(img);
+    img.onerror = err => reject(err);
+  });
+};
+export const cropImage = async function(
+  image,
+  config = {
+    width: 100,
+    height: 100
+  }
+) {
+  const img = await loadImage(image);
+  const result = await smartcrop.crop(img, {
+    width: config.width,
+    height: config.height
+  });
+  console.log(result);
+  return result;
+};
+
+cropImage(
+  "https://cdn.vox-cdn.com/thumbor/9KWZcsQc2pnKa73CVfdG8lp-bu8=/0x0:2040x1360/1200x675/filters:focal(1228x281:1554x607)/cdn.vox-cdn.com/uploads/chorus_image/image/63920405/IMG_B990CF208719_1.0.jpeg"
+);

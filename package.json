@@ -24,7 +24,8 @@
     "@tensorflow/tfjs": "^1.2.11",
     "@tensorflow/tfjs-node": "^1.2.11",
     "@tensorflow/tfjs-vis": "^1.2.0",
-    "localforage": "^1.7.3"
+    "localforage": "^1.7.3",
+    "smartcrop": "^2.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.6.3",
