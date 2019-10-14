@@ -134,7 +134,7 @@ export default class ImageClassification {
     // One hot encoding = o vector de output como se fosse perfeito, ex -> label = blue [1,0,0]
     let labelsTensor = tf.tensor1d(labels, "int32");
     this.xs = tf.tensor2d(colors);
-    this.ys = tf.oneHot(labelsTensor, LABELS.length + 1);
+    this.ys = tf.oneHot(labelsTensor, LABELS.length);
   }
 
   setModel() {
@@ -157,13 +157,15 @@ export default class ImageClassification {
     // Optimization -> meanSquaredError -> categoricalCrossEntropy
     // CategoricalCrossEntropy e boa pa comparar distribuições de probabilidade
     const lr = 0.2; // learning rate
-    const loss = "categoricalCrossEntropy"; // erro entre a distribuição de probabilidade do certo com a aproximação
+    const loss = "categoricalCrossentropy"; // erro entre a distribuição de probabilidade do certo com a aproximação
     const optimizer = tf.train.sgd(lr);
 
-    // this.model.compile({
-    //   optimizer,
-    //   loss
-    // });
+    this.model.compile({
+      optimizer,
+      loss
+    });
+    console.log(this.xs, this.ys);
+    this.model.fit(this.xs, this.ys);
   }
 
   async setup() {
